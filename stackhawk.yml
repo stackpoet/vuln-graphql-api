@@ -1,19 +1,17 @@
+# stackhawk configuration for Vuln-GraphQL
 app:
-  applicationId: ${APP_ID:a919a264-de99-4087-b3b4-5939104caf9f}
-  env: Development
-  host: http://localhost:3000
-
+  # An applicationId obtained from the StackHawk platform.
+  applicationId: 2bec66e7-e73f-4fd5-bf81-84f35e93f4d4 # (required)
+  # The environment for the applicationId defined in the StackHawk platform.
+  env: Development # (required)
+  # The url of your application to scan
+  host: http://localhost:3000 # (required)
+  # The names of your session tokens aka: cookie names
   graphqlConf:
-    enabled: true
-    schemaPath: /graphql
-    requestMethod: POST
-    uriMaxLength: "4000"
-    maxDepth: "7"
-    introspection:
-      requestsPerCycle: "10"
-      requestDelay: "1000"
-    batchQueries: false
-    operation: ALL
-    filePath: ""
-hawk:
-  failureThreshold: high
+      enabled: true
+      operation: QUERY
+  autoPolicy: true
+  autoInputVectors: true
+  hawk:
+    spider:
+      base: false
